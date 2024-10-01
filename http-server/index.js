@@ -6,6 +6,7 @@ const args = minimist(process.argv.slice(2));
 const port = args.port || 3000; 
 
 function servePage(res, filePath) {
+    console.log(`Serving page: ${filePath}`); 
     fs.readFile(filePath, (err, data) => {
         if (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
