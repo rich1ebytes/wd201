@@ -21,7 +21,7 @@ function servePage(res, filePath) {
 const server = http.createServer((req, res) => {
     if (req.url === '/' || req.url === '/home') {
         servePage(res, 'home.html');
-    } else if (req.url === '/projects') {
+    } else if (req.url === '/project') {
         servePage(res, 'project.html');
     } else if (req.url === '/registration') {
         servePage(res, 'registration.html');
