@@ -1,6 +1,6 @@
 const todoList = require('../todo');
 
-const { all, markAsComplete, add } = todoList();
+const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
 
 describe("TodoList Test Suite", () => {
     beforeAll(() => {
@@ -28,23 +28,24 @@ describe("TodoList Test Suite", () => {
         markAsComplete(0);
         expect(all[0].completed).toBe(true);
     });
-    test("Should retrieve all overdue items", () => {
+
+    test("Should retrieve overdue items", () => {
         const overdueItem = overdue();
         overdueItem.forEach((todo) => {
             expect(new Date(todo.dueDate) < new Date()).toBe(true);
         });
     });
 
-    test("Should retrieve all due today items", () => {
+    test("Should retrieve due all today items", () => {
         const todayItem = dueToday();
         todayItem.forEach((todo) => {
             expect(todo.dueDate).toBe(new Date().toISOString().slice(0, 10));
         });
     });
 
-    test("Should retrieve alll the due later items", () => {
-        const laterItem = dueLater();
-        laterItem.forEach((todo) => {
+    test("Should retrieve due all later items", () => {
+        const laterItems = dueLater();
+        laterItems.forEach((todo) => {
             expect(new Date(todo.dueDate) > new Date()).toBe(true);
         });
     });
